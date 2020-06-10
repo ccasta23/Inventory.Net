@@ -1,0 +1,14 @@
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Bussiness\bin\Debug\netcoreapp3.1\Bussiness.deps.json
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Bussiness\bin\Debug\netcoreapp3.1\Bussiness.dll
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Bussiness\bin\Debug\netcoreapp3.1\Bussiness.pdb
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Bussiness\bin\Debug\netcoreapp3.1\DataAccess.dll
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Bussiness\bin\Debug\netcoreapp3.1\Entities.dll
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Bussiness\bin\Debug\netcoreapp3.1\DataAccess.pdb
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Bussiness\bin\Debug\netcoreapp3.1\Entities.pdb
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Bussiness\obj\Debug\netcoreapp3.1\Bussiness.csprojAssemblyReference.cache
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Bussiness\obj\Debug\netcoreapp3.1\Bussiness.AssemblyInfoInputs.cache
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Bussiness\obj\Debug\netcoreapp3.1\Bussiness.AssemblyInfo.cs
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Bussiness\obj\Debug\netcoreapp3.1\Bussiness.csproj.CoreCompileInputs.cache
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Bussiness\obj\Debug\netcoreapp3.1\Bussiness.csproj.CopyComplete
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Bussiness\obj\Debug\netcoreapp3.1\Bussiness.dll
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Bussiness\obj\Debug\netcoreapp3.1\Bussiness.pdb

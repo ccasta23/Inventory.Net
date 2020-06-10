@@ -1,0 +1,61 @@
+﻿@using Entities
+@using Bussiness
+@inject B_Product b_product
+@inject NavigationManager NavManager
+
+    <EditForm Model="oProduct">
+        <div class="form-group">
+            <label>Referencia:</label>
+            <InputText class="form-control" @bind-Value="oProduct.ProductId" />
+        </div>
+
+        <div class="form-group">
+            <label>Nombre:</label>
+            <InputText class="form-control" @bind-Value="oProduct.ProductName" />
+        </div>
+
+        <div class="form-group">
+            <label>Descripción:</label>
+            <InputTextArea class="form-control" @bind-Value="oProduct.ProductDescription" />
+        </div>
+
+        <div class="form-group">
+            <label>Categoria:</label>
+            <InputSelect class="form-control" @bind-Value="oProduct.CategoryId">
+                <option value="">Seleccione la categoría</option>
+                @foreach(CategoryEntity category in categories)
+                {
+                    <option value="@category.CategoryId">@category.CategoryName</option>
+                }
+            </InputSelect>
+        </div>
+
+        <input type="button" class="btn btn-primary" value="Agregar Producto" @onclick="SaveProduct" />
+
+    </EditForm>
+
+
+
+@code {
+
+    List<CategoryEntity> categories = new List<CategoryEntity>();
+
+    ProductEntity oProduct = new ProductEntity();
+
+    private void SaveProduct()
+    {
+
+        //B_Product b_product = new B_Product();
+        //b_product.CreateProduct(oProduct);
+
+        b_product.CreateProduct(oProduct);
+        NavManager.NavigateTo("products/list");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        categories = B_Category.CategoryList();
+
+    }
+
+}

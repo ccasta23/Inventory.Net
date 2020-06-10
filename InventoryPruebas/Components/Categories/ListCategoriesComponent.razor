@@ -1,0 +1,36 @@
+﻿@using Entities
+@using Bussiness
+
+<hr />
+<a href="categories/create">Crear Categoría</a>
+<hr />
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Categoría</th>
+            <th scope="col">Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in categories)
+        {
+            <tr>
+                <th scope="row">@category.CategoryId</th>
+                <td>@category.CategoryName</td>
+                <td><a href="categories/update/@category.CategoryId" class="btn btn-success">Editar</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+
+    List<CategoryEntity> categories = new List<CategoryEntity>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        categories = B_Category.CategoryList();
+    }
+}

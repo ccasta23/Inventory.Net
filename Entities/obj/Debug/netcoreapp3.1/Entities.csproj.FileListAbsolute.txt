@@ -1,0 +1,9 @@
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Entities\bin\Debug\netcoreapp3.1\Entities.deps.json
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Entities\bin\Debug\netcoreapp3.1\Entities.dll
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Entities\bin\Debug\netcoreapp3.1\Entities.pdb
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Entities\obj\Debug\netcoreapp3.1\Entities.csproj.CoreCompileInputs.cache
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Entities\obj\Debug\netcoreapp3.1\Entities.AssemblyInfoInputs.cache
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Entities\obj\Debug\netcoreapp3.1\Entities.AssemblyInfo.cs
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Entities\obj\Debug\netcoreapp3.1\Entities.dll
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Entities\obj\Debug\netcoreapp3.1\Entities.pdb
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\Entities\obj\Debug\netcoreapp3.1\Entities.csprojAssemblyReference.cache

@@ -1,0 +1,134 @@
+﻿@using Entities
+@using Bussiness
+
+<div class="form-group">
+    <label>Bodega:</label>
+    <select class="form-control" @onchange="OnChangedWarehouse">
+        <option value="">Selecciones una bodega</option>
+        @foreach (var warehouse in warehouses)
+        {
+            <option value="@warehouse.WarehouseId">@warehouse.WarehouseName</option>
+        }
+    </select>
+</div>
+<hr />
+<EditForm Model="oTransaction">
+    <div class="form-group">
+        <label>Producto:</label>
+        <InputSelect class="form-control" @bind-Value="oTransaction.StorageId">
+            <option value="">Seleccione un Producto</option>
+            @foreach (var storage in storages)
+            {
+                <option value="@storage.StorageId">@storage.Product.ProductName</option>
+            }
+        </InputSelect>
+        <small class="form-text text-muted">Cantidad Disponible: @cantidadDisponible</small>
+    </div>
+    <div class="form-group">
+        <label>Cantidad</label>
+        <InputNumber class="form-control" @bind-Value="@oTransaction.Quantity" />
+    </div>
+    <div class="form-group form-check">
+        <InputCheckbox class="form-check-input" @bind-Value="@oTransaction.IsInput" />
+        <label class="form-check-label">¿Entrada?</label>
+    </div>
+    <input type="button" class="btn btn-primary" value="@buttonValue" @onclick="SaveTransaction" />
+</EditForm>
+<div class="alert @bootstrapClass text-center h4 mt-3">
+    @message
+</div>
+
+@code
+{
+    string message = "";
+    string bootstrapClass = "";
+    TransactionEntity oTransaction = new TransactionEntity();
+    List<WareHouseEntity> warehouses = new List<WareHouseEntity>();
+    List<StorageEntity> storages = new List<StorageEntity>();
+    string buttonValue => oTransaction.IsInput ? "Registrar Entrada" : "Registrar Salida";
+    ProductEntity oProduct = new ProductEntity();
+    StorageEntity oStorage = new StorageEntity();
+    int cantidadDisponible = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        warehouses = B_Warehouse.WareHouseList();
+        //No se cargan los storages porque serán dinámicos de acuerdo a la bodega seleccionada
+
+    }
+
+    private void OnChangedWarehouse(ChangeEventArgs e)
+    {
+        //Obtener el ID la bodega seleccionada
+        var WarehouseId = e.Value.ToString();
+        //Consultar los productos relacionados a la bodega en los almacenamientos
+        storages = B_Storage.StorageListInWarehouse(WarehouseId);
+    }
+
+    private void OnChangedProduct(ChangeEventArgs e)
+    {
+        oStorage = storages.LastOrDefault(s => s.StorageId == oTransaction.StorageId);
+        oProduct = oStorage.Product;
+
+        cantidadDisponible = oStorage.PartialQuantity;
+    }
+
+    private void SaveTransaction()
+    {
+        //Se debe consultar el producto y el storage para cambiar sus respectivas cantidades
+        oStorage = storages.LastOrDefault(s => s.StorageId == oTransaction.StorageId);
+        oProduct = oStorage.Product;
+
+        oTransaction.TransactionId = Guid.NewGuid().ToString();
+        oTransaction.TransactionDate = DateTime.Now;
+
+        if (oTransaction.IsInput)
+        {
+            //Si es una entrada, se suma y ya está
+            oStorage.PartialQuantity = oStorage.PartialQuantity + oTransaction.Quantity;
+            B_Storage.UpdateStorage(oStorage);
+
+            oProduct.TotalQuantity = oProduct.TotalQuantity + oTransaction.Quantity;
+            B_Product.UpdateProduct(oProduct);
+
+            B_Transaction.CreateTransaction(oTransaction);
+            bootstrapClass = "alert-success";
+            message = "Transacción creada con éxito";
+            cantidadDisponible += oTransaction.Quantity;
+        }
+        else
+        {
+            //Si es una salida, restar (Se debe validar que si se tengan unidades suficientes)
+            if(IsBiggerThanZero(oTransaction.Quantity, oStorage.PartialQuantity))
+            {
+                oStorage.PartialQuantity = oStorage.PartialQuantity - oTransaction.Quantity;
+                B_Storage.UpdateStorage(oStorage);
+
+                oProduct.TotalQuantity = oProduct.TotalQuantity - oTransaction.Quantity;
+                B_Product.UpdateProduct(oProduct);
+
+
+                B_Transaction.CreateTransaction(oTransaction);
+                bootstrapClass = "alert-success";
+                message = "Transacción creada con éxito";
+                cantidadDisponible -= oTransaction.Quantity;
+            } else
+            {
+                bootstrapClass = "alert-danger";
+                message = "No existe la cantidad suficiente en bodega";
+            }
+        }
+    }
+
+    private bool IsBiggerThanZero(int Quantity, int storageQuantity)
+    {
+        if (storageQuantity >= Quantity)
+        {
+            return true;
+        }
+
+        return false;
+
+    }
+
+}

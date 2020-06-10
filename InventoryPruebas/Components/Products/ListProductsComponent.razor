@@ -1,0 +1,67 @@
+﻿@using Entities
+@using Bussiness
+
+<hr />
+<a href="products/create">Crear Producto</a>
+<hr />
+<div class="form-group">
+    <label>Filtrar por Categoria:</label>
+    <select class="form-control" @onchange="CategoryChanged">
+        <option value="all">Todas las categorias</option>
+        @foreach (var category in categories)
+        {
+            <option value="@category.CategoryId">@category.CategoryName</option>
+        }
+    </select>
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre Producto</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in filteredProducts)
+        {
+        <tr>
+            <th scope="row">@product.ProductId</th>
+            <td>@product.ProductName</td>
+            <td>@product.TotalQuantity</td>
+            <td>@product.CategoryId</td>
+            <td><a href="products/update/@product.ProductId" class="btn btn-success">Editar</a></td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+
+    List<ProductEntity> products = new List<ProductEntity>();
+    List<ProductEntity> filteredProducts = new List<ProductEntity>();
+    List<CategoryEntity> categories = new List<CategoryEntity>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = B_Product.ProductList();
+        filteredProducts = products;
+        categories = B_Category.CategoryList();
+    }
+
+    private void CategoryChanged(ChangeEventArgs e)
+    {
+        Console.WriteLine(e.Value.ToString());
+        if (e.Value.ToString() == "all")
+        {
+            filteredProducts = products;
+        } else
+        {
+            filteredProducts = products.Where(c => c.CategoryId == e.Value.ToString()).ToList();
+        }
+
+    }
+}

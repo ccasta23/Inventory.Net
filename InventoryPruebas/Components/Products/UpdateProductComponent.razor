@@ -1,0 +1,59 @@
+﻿@using Entities
+@using Bussiness
+@inject B_Product b_product
+@inject NavigationManager NavManager
+
+<EditForm Model="oProduct">
+    <div class="form-group">
+        <label>Nombre:</label>
+        <InputText class="form-control" @bind-Value="oProduct.ProductName" />
+    </div>
+
+    <div class="form-group">
+        <label>Descripción:</label>
+        <InputTextArea class="form-control" @bind-Value="oProduct.ProductDescription" />
+    </div>
+
+    <div class="form-group">
+        <label>Categoria:</label>
+        <InputSelect class="form-control" @bind-Value="oProduct.CategoryId">
+            @foreach (CategoryEntity category in categories)
+            {
+                <option value="@category.CategoryId">@category.CategoryName</option>
+            }
+        </InputSelect>
+    </div>
+
+    <input type="button" class="btn btn-primary" value="Actualizar Producto" @onclick="UpdateProduct" />
+
+</EditForm>
+
+
+
+@code {
+
+    [Parameter]
+    public string IdProduct { get; set; }
+
+    List<CategoryEntity> categories = new List<CategoryEntity>();
+
+    ProductEntity oProduct = new ProductEntity();
+
+
+    private void UpdateProduct()
+    {
+
+        //B_Product b_product = new B_Product();
+        //b_product.CreateProduct(oProduct);
+
+        B_Product.UpdateProduct(oProduct);
+        NavManager.NavigateTo("products/list");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        categories = B_Category.CategoryList();
+        oProduct = B_Product.GetProductById(IdProduct);
+    }
+
+}

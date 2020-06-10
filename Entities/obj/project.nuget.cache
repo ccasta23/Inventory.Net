@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "nVZkRF4/j+3zxCqvgCw99Wp2+/Rk4nCEsRv2jl1qdSI6CgtqfLJbVh0y5JhWgI8WmPAZCvx4FFs9wPMnYsV9EQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\CARLOS CASTAÑEDA\\source\\repos\\InventoryPruebas\\Entities\\Entities.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\CARLOS CASTAÑEDA\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}

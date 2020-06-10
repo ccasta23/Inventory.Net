@@ -1,0 +1,5 @@
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\InventoryContext\bin\Debug\netcoreapp3.1\InventoryContext.deps.json
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\InventoryContext\bin\Debug\netcoreapp3.1\InventoryContext.dll
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\InventoryContext\obj\Debug\netcoreapp3.1\InventoryContext.AssemblyInfoInputs.cache
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\InventoryContext\obj\Debug\netcoreapp3.1\InventoryContext.AssemblyInfo.cs
+C:\Users\CARLOS CASTAÑEDA\source\repos\InventoryPruebas\InventoryContext\obj\Debug\netcoreapp3.1\InventoryContext.csprojAssemblyReference.cache
